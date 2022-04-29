@@ -21,7 +21,7 @@ const annotationRoutes = (app, fs) => {
 
     function getAnnotationNames(arr, callback) {
         // read recording file names
-        fs.readdir(dirPath, (err, files) => {
+        fs.readdir(annotationPath, (err, files) => {
             files.forEach(file => {
                 arr.push(file);
             });
