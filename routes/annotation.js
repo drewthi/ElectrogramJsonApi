@@ -70,6 +70,10 @@ const annotationRoutes = (app, fs) => {
                 if (parsedFileIdx !== undefined && !isNaN(parsedFileIdx) && parsedFileIdx < recordings.length) {
                     const file = recordings[parsedFileIdx];
                     if (annotations.includes(file)) {
+                        console.log("Annotations: ");
+                        console.log(annotations);
+                        console.log("File: ");
+                        console.log(file);
                         fs.readFile(annotationPath + file, (err, data) => {
                             if (err) throw err;
                             let annotationData = JSON.parse(data);
