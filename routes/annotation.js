@@ -63,20 +63,19 @@ const annotationRoutes = (app, fs) => {
     // READ
     app.get("/annotation/:file", (req, res) => {
         const annotation = req.params['file'];
+        console.log("--> get annotation");
         getFileNames([], (recordings) => {
             getAnnotationNames([], (annotations) => {
-                console.log("HERE: " + annotation);
                 const parsedFileIdx = parseInt(annotation);
                 if (parsedFileIdx !== undefined && !isNaN(parsedFileIdx) && parsedFileIdx < recordings.length) {
                     const file = recordings[parsedFileIdx];
                     if (annotations.includes(file)) {
-                        console.log("Annotations: ");
-                        console.log(annotations);
-                        console.log("File: ");
-                        console.log(file);
+                        console.log("Annotation file exists");
                         fs.readFile(annotationPath + file, (err, data) => {
                             if (err) throw err;
                             let annotationData = JSON.parse(data);
+                            console.log("Annotation Data vvv");
+                            console.log(annotationData);
                             res.status(200).json({
                                 method: 'GET', 
                                 endpoint: 'getannotation',
